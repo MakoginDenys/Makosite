@@ -1,9 +1,10 @@
 import { FC } from "react";
+import { Provider } from "react-redux";
 import { Routes, Route } from 'react-router-dom'
+
 import './App.css';
 
 import {
-    AuthProvider,
     PrivateRoute,
     Navbar, Footer
 } from './components'
@@ -15,11 +16,12 @@ import {
     RegisterPage,
     DashboardPage
 } from './components/Pages';
+import {store} from "./storage/store.ts";
 
 const App : FC = () => {
 
     return (
-        <AuthProvider>
+        <Provider store={store}>
             <Navbar />
 
             <Routes>
@@ -35,7 +37,7 @@ const App : FC = () => {
                 </Route>
             </Routes>
             <Footer />
-        </AuthProvider>
+        </Provider>
     );
 }
 
