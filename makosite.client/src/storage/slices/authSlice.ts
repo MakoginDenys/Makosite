@@ -1,9 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
+import {User} from "../../models/User.ts";
+import {IAuthState} from "../../models/interfaces/IAuthState.ts";
 
-
-const initialState: any = {
-    accessToken: "",
-    user: null
+const initialState: IAuthState = {
+    accessToken: null,
+    user: new User(1, '', '', '', 'ggrinyuk', '')
 };
 
 export const authSlice = createSlice({
@@ -15,8 +16,8 @@ export const authSlice = createSlice({
             state.user = action.payload.user;
         },
         logoutUser: state => {
-            state.user = null;
             state.accessToken = null;
+            state.user = null;
         },
     },
 });
