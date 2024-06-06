@@ -31,7 +31,7 @@ namespace Makosite.Server.Services
             }
 
             // Створення нового користувача
-            var newUser = new User { Email = model.Email, Password = model.Password };
+            var newUser = new User { Email = model.Email, Password = model.Password, PhoneNumber = model.PhoneNumber, UserName = model.UserName };
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
 
