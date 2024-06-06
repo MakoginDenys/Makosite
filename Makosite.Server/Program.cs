@@ -51,18 +51,6 @@ namespace Makosite.Server
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            app.Map("/login/{username}", (string username) =>
-            {
-                var claims = new List<Claim> { new Claim(ClaimTypes.Name, username) };
-                var jwt = new JwtSecurityToken(
-                        issuer: AuthOptions.ISSUER,
-                        audience: AuthOptions.AUDIENCE,
-                        claims: claims,
-                        expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
-                        signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-
-                return new JwtSecurityTokenHandler().WriteToken(jwt);
-            });
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
@@ -74,14 +62,6 @@ namespace Makosite.Server
 
             app.Run();
 
-        }
-        public class AuthOptions
-        {
-            public const string ISSUER = "MyAuthServer";
-            public const string AUDIENCE = "MyAuthClient";
-            const string KEY = "mysupersecret_secretsecretsecretkey!123";
-            public static SymmetricSecurityKey GetSymmetricSecurityKey() =>
-                new SymmetricSecurityKey(Encoding.UTF8.GetBytes(KEY));
         }
     }
 }

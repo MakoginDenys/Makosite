@@ -4,6 +4,10 @@ using Makosite.Server.Repository.Models;
 using Makosite.Server.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Makosite.Server.Services
 {
@@ -43,10 +47,28 @@ namespace Makosite.Server.Services
             }
 
             // Генерування токену або ключа доступу
-            var token = GenerateToken(user.Id);
+            var token = GenerateToken(model.Email); ;
 
             return new AuthResponseModel { Success = true, Message = "Успішний вхід", Token = token, UserId = user.Id };
         }
+        private string GenerateToken(string userEmail)
+        {
+            var securityKey = new SymmetricSecurityKey(Convert.FromBase64String(AuthOptions.GetSymmetricSecurityKey().KeyId));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var claims = new List<Claim> { new Claim(ClaimTypes.Name, userEmail) };
+
+            var token = new JwtSecurityToken(
+                issuer: AuthOptions.ISSUER,
+                audience: AuthOptions.AUDIENCE,
+                claims: claims,
+                expires: DateTime.UtcNow.AddHours(1),
+                signingCredentials: credentials
+            );
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            return tokenHandler.WriteToken(token);
+        }
     }
-    }
+
 }
+
