@@ -49,7 +49,7 @@ namespace Makosite.Server.Services
             // Генерування токену або ключа доступу
             var token = GenerateToken(model.Email); ;
 
-            return new AuthResponseModel { Success = true, Message = "Успішний вхід", Token = token, UserId = user.Id };
+            return new AuthResponseModel { Success = true, Message = "Успішний вхід", Token = token, UserId = user.Id, UserName = user.UserName };
         }
         private string GenerateToken(string userEmail)
         {
