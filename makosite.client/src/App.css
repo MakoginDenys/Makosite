@@ -1,19 +1,15 @@
-﻿#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-}
+﻿ * {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+ }
 
-tr:nth-child(even) {
-    background: #F2F2F2;
-}
+ body {
+     font-family: 'Montserrat', sans-serif;
+     color: #000;
+ }
 
-tr:nth-child(odd) {
-    background: #FFF;
-}
-
-th, td {
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
+ a {
+     color: inherit; /* blue colors for links too */
+     text-decoration: inherit; /* no underline */
+ }

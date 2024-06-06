@@ -1,0 +1,27 @@
+.footer {
+    height: 400px;
+    background: #000;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    padding: 50px 7%;
+
+    li {
+        list-style-type: none;
+        &:not(:last-child) {
+            margin-bottom: 40px;
+        }
+    }
+}
+
+.footer-image {
+    width: 250px;
+    height: 70px;
+    display: block;
+}
+
+.flexContainer {
+    display: flex;
+    justify-content: space-between;
+}

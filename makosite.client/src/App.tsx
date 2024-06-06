@@ -1,56 +1,42 @@
-import { useEffect, useState } from 'react';
+import { FC } from "react";
+import { Routes, Route } from 'react-router-dom'
 import './App.css';
 
-interface Forecast {
-    date: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
-}
+import {
+    AuthProvider,
+    PrivateRoute,
+    Navbar, Footer
+} from './components'
 
-function App() {
-    const [forecasts, setForecasts] = useState<Forecast[]>();
+import {
+    HomePage,
+    LoginPage,
+    ProfilePage,
+    RegisterPage,
+    DashboardPage
+} from './components/Pages';
 
-    useEffect(() => {
-        populateWeatherData();
-    }, []);
-
-    const contents = forecasts === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-        : <table className="table table-striped" aria-labelledby="tabelLabel">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
-                </tr>
-            </thead>
-            <tbody>
-                {forecasts.map(forecast =>
-                    <tr key={forecast.date}>
-                        <td>{forecast.date}</td>
-                        <td>{forecast.temperatureC}</td>
-                        <td>{forecast.temperatureF}</td>
-                        <td>{forecast.summary}</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>;
+const App : FC = () => {
 
     return (
-        <div>
-            <h1 id="tabelLabel">Weather forecast</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
-        </div>
-    );
+        <AuthProvider>
+            <Navbar />
 
-    async function populateWeatherData() {
-        const response = await fetch('weatherforecast');
-        const data = await response.json();
-        setForecasts(data);
-    }
+            <Routes>
+                {/* Public routes */}
+                <Route path="/" element={<HomePage/>}/>
+                <Route path="/login" element={<LoginPage/>}/>
+                <Route path="/register" element={<RegisterPage/>}/>
+                <Route path="/:username" element={<ProfilePage/>}/>
+
+                {/* Private route using PrivateRoute component */}
+                <Route path="/" element={<PrivateRoute/>}>
+                    <Route path="/dashboard" element={<DashboardPage/>}/>
+                </Route>
+            </Routes>
+            <Footer />
+        </AuthProvider>
+    );
 }
 
 export default App;
