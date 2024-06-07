@@ -1,0 +1,47 @@
+.dropdown {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.dropdownPanel {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 150px;
+    background-color: white;
+    box-shadow: 2px 3px 9px 0 rgba(0,0,0,0.4);
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        font-size: 14px;
+    }
+    li {
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        color: #000;
+        height: 30px;
+
+        &:hover {
+            background-color: #ececec;
+        }
+    }
+}
+
+.dropdownItemIcon {
+    min-width: 25px;
+    align-items: start;
+    margin-right: 10px;
+}
+
+.dropdownAvatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+}
