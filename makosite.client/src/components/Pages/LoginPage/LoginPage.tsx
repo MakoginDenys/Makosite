@@ -1,9 +1,46 @@
 import {FC} from 'react';
+import {Link, useNavigate} from "react-router-dom";
+import {Logo} from "../../Logo/Logo.tsx";
+import css from './LoginPage.module.css';
+import {useAppDispatch} from "../../../hooks/hooks.ts";
+import {loginUser} from "../../../storage/slices/authSlice.ts";
 
-const LoginPage : FC= () => {
+const LoginPage : FC = () => {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    // todo: add useFrom
+
+    const handleSubmit = () => {
+        dispatch(loginUser({token: '', user: {username: 'login_user'}}));
+        navigate('/');
+    }
+
     return (
         <div>
-            Login
+            <div className={css.loginForm}>
+                <div className={css.loginLogo}>
+                    <Logo fontSize={40} firstPartOfLogo={'Mako'} secondPartOfLogo={'\nSite'}/>
+                </div>
+                <h3>Sign in</h3>
+                <form onSubmit={handleSubmit}>
+                    <div className={css.inputGroup}>
+                        <label htmlFor="">Email or phone number</label>
+                        <input type="text" placeholder={"example@gmail.com"}/>
+                    </div>
+                    <div className={css.inputGroup}>
+                        <label htmlFor="">Password</label>
+                        <input type="password" placeholder={"your password"}/>
+                    </div>
+                    <div className={css.rememberGroup}>
+                        <input type="checkbox"/>
+                        <label htmlFor="">Remember me</label>
+                    </div>
+                    <button className={css.submitButton} type={"submit"}>Log in</button>
+                </form>
+                <div className={css.createAccountLink}>
+                    Don't have an account? <Link to={'/register'}>Register now</Link>
+                </div>
+            </div>
         </div>
     );
 };
