@@ -1,5 +1,6 @@
 import {FC} from 'react';
 import {Link, useNavigate} from "react-router-dom";
+import {useForm} from "react-hook-form";
 import {Logo} from "../../Logo/Logo.tsx";
 import css from './LoginPage.module.css';
 import {useAppDispatch} from "../../../hooks/hooks.ts";
@@ -8,9 +9,15 @@ import {loginUser} from "../../../storage/slices/authSlice.ts";
 const LoginPage : FC = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    // todo: add useFrom
+    const {
+        register,
+        handleSubmit,
+        formState: {
+            errors
+        }
+    } = useForm();
 
-    const handleSubmit = () => {
+    const onSubmit = () => {
         dispatch(loginUser({token: '', user: {username: 'login_user'}}));
         navigate('/');
     }
@@ -22,14 +29,20 @@ const LoginPage : FC = () => {
                     <Logo fontSize={40} firstPartOfLogo={'Mako'} secondPartOfLogo={'\nSite'}/>
                 </div>
                 <h3>Sign in</h3>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className={css.inputGroup}>
                         <label htmlFor="">Email or phone number</label>
-                        <input type="text" placeholder={"example@gmail.com"}/>
+                        <input
+                            type="text"
+                            {...register("email", { required: true })}
+                            placeholder={"example@gmail.com"}
+                        />
+                        {errors.email && <span>This field is required</span>}
                     </div>
                     <div className={css.inputGroup}>
                         <label htmlFor="">Password</label>
                         <input type="password" placeholder={"your password"}/>
+                        {errors.password && <span>This field is required</span>}
                     </div>
                     <div className={css.rememberGroup}>
                         <input type="checkbox"/>
