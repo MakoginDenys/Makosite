@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Makosite.Server.Repository.Models
 {
@@ -10,5 +11,9 @@ namespace Makosite.Server.Repository.Models
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
         public string UserName { get; set; }
+        [ForeignKey(nameof(UserProfileInformation))]
+        public int UserInformationId { get; set; }
+        public UserProfileInformation UserProfileInformation { get; set; }
+
     }
 }

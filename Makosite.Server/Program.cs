@@ -29,6 +29,7 @@ namespace Makosite.Server
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddAuthorization();
             builder.Services.AddTransient<IAuthService, AuthService>();
+            builder.Services.AddTransient<IUserService, UserService>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {

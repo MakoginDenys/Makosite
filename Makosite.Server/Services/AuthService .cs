@@ -24,7 +24,6 @@ namespace Makosite.Server.Services
 
         public async Task<AuthResponseModel> RegisterAsync(RegisterRequestModel model)
         {
-            // Перевірка, чи існує користувач з такою електронною поштою
             var existingUser = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email || u.PhoneNumber == model.PhoneNumber);
             if (existingUser != null)
             {
@@ -33,7 +32,9 @@ namespace Makosite.Server.Services
 
             // Створення нового користувача
             var newUser = new User { Email = model.Email, Password = model.Password, PhoneNumber = model.PhoneNumber, UserName = model.UserName };
+            var newUserInformation = new UserProfileInformation { User =  newUser };
             _context.Users.Add(newUser);
+            _context.UsersProfileInformation.Add(newUserInformation);
             await _context.SaveChangesAsync();
 
             return new AuthResponseModel { Success = true, Message = "User successfully registered" };
