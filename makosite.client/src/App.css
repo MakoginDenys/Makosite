@@ -20,3 +20,8 @@
      flex-direction: column;
      justify-content: space-between;
  }
+
+ .formError {
+     color: #f83446;
+     font-size: 14px;
+ }

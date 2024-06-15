@@ -36,11 +36,13 @@ const DonateTab : FC = () => {
                     <div className={css.inputTitle}>Payment method</div>
                     <div>
                         <div className={css.inputRadio}>
-                            <input id={'radioMono'} {...register('mono')} name="paymentMethod" type="radio" defaultChecked/>
+                            <input id={'radioMono'} {...register('mono')} name="paymentMethod" type="radio"
+                                   defaultChecked/>
                             <label htmlFor="radioMono">Mono</label>
                         </div>
                         <div className={css.inputRadio}>
-                            <input id={'radioCrypto'} {...register('crypto')} name="paymentMethod" type="radio" disabled/>
+                            <input id={'radioCrypto'} {...register('crypto')} name="paymentMethod" type="radio"
+                                   disabled/>
                             <label htmlFor="radioCrypto">Cryptocurrency</label>
                         </div>
                     </div>
@@ -51,11 +53,11 @@ const DonateTab : FC = () => {
                             <span>₴ UAH</span>
                         </div>
                         <div>
-                            <span onClick={(e) =>onPresetClick(e,30)} className={css.pricePreset}>30</span>
-                            <span onClick={(e) =>onPresetClick(e,50)} className={css.pricePreset}>50</span>
-                            <span onClick={(e) =>onPresetClick(e,100)} className={css.pricePreset}>100</span>
-                            <span onClick={(e) =>onPresetClick(e,200)} className={css.pricePreset}>200</span>
-                            <span onClick={(e) =>onPresetClick(e,500)} className={css.pricePreset}>500</span>
+                            <span onClick={(e) => onPresetClick(e, 30)} className={css.pricePreset}>30</span>
+                            <span onClick={(e) => onPresetClick(e, 50)} className={css.pricePreset}>50</span>
+                            <span onClick={(e) => onPresetClick(e, 100)} className={css.pricePreset}>100</span>
+                            <span onClick={(e) => onPresetClick(e, 200)} className={css.pricePreset}>200</span>
+                            <span onClick={(e) => onPresetClick(e, 500)} className={css.pricePreset}>500</span>
                         </div>
                     </div>
                     <div className={css.amountDescription}>Amount from 1 to 29999 ₴</div>

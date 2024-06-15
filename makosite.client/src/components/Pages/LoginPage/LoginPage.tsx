@@ -22,7 +22,6 @@ const LoginPage : FC = () => {
     const onSubmit = async (data: any) => {
         await authService.login(data).then((res) => {
             dispatch(loginUser({token: res.token, user: res.user}));
-            console.log(res.user);
             navigate('/');
         }).catch(e => {
             if (e.response?.data?.message) {
@@ -54,7 +53,7 @@ const LoginPage : FC = () => {
                             {...register("EmailOrPhoneNumber", { required: true })}
                             placeholder={"example@gmail.com"}
                         />
-                        {errors.EmailOrPhoneNumber && <span>This field is required</span>}
+                        {errors.EmailOrPhoneNumber && <span className="formError">This field is required</span>}
                     </div>
                     <div className={css.inputGroup}>
                         <label htmlFor="">Password</label>
@@ -62,7 +61,7 @@ const LoginPage : FC = () => {
                             type="password"
                             {...register("password", { required: true })}
                             placeholder={"your password"}/>
-                        {errors.password && <span>{errors.password.message?.toString()}</span>}
+                        {errors.password && <span className="formError">{errors.password.message?.toString()}</span>}
                     </div>
                     <div className={css.rememberGroup}>
                         <input type="checkbox"/>

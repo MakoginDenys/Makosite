@@ -43,7 +43,7 @@ const DropdownProfile : FC = () => {
                         </li>
                         <li>
                             <FontAwesomeIcon className={css.dropdownItemIcon} size={'lg'} icon={faGear}/>
-                            <Link to={`/settings`}>Settings</Link>
+                            <Link to={`/dashboard/settings`}>Settings</Link>
                         </li>
                         <li onClick={handleLogout}>
                             <FontAwesomeIcon className={css.dropdownItemIcon} size={'lg'} icon={faArrowRightFromBracket} />

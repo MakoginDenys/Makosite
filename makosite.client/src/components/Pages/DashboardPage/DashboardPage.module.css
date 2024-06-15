@@ -1,0 +1,14 @@
+.dashboard {
+    display: flex;
+    height: 500px;
+}
+
+.dashboardLinks {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboardLeft {
+    width: 300px;
+    border-right: 1px solid #000;
+}

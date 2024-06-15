@@ -16,6 +16,9 @@ import {
 import {store} from "./storage/store.ts";
 import DonateTab from "./components/Pages/ProfilePage/Tabs/DonateTab/DonateTab.tsx";
 import AboutTab from "./components/Pages/ProfilePage/Tabs/AboutTab/AboutTab.tsx";
+import {SettingsPage} from "./components/Pages/SettingsPage/SettingsPage.tsx";
+import {OverviewPage} from "./components/Pages/OverviewPage/OverviewPage.tsx";
+import {StatisticsPage} from "./components/Pages/StatisticsPage/StatisticsPage.tsx";
 import './App.css';
 
 const App : FC = () => {
@@ -36,7 +39,11 @@ const App : FC = () => {
 
                 {/* Private route using PrivateRoute component */}
                 <Route path="/" element={<PrivateRoute/>}>
-                    <Route path="/dashboard" element={<DashboardPage/>}/>
+                    <Route path="/dashboard" element={<DashboardPage/>}>
+                        <Route path="overview" element={<OverviewPage/>}/>
+                        <Route path="statistics" element={<StatisticsPage/>}/>
+                        <Route path="settings" element={<SettingsPage/>}/>
+                    </Route>
                 </Route>
             </Routes>
             <Footer />
