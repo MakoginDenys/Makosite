@@ -5,10 +5,10 @@ import {Logo} from "../../Logo/Logo.tsx";
 import cssLogin from "../LoginPage/LoginPage.module.css";
 import {authService} from "../../../services/auth.service.ts";
 
-type FormData = {
+type RegisterFormData = {
     email: string,
     phoneNumber: string,
-    username: string,
+    userName: string,
     password: string,
     repeatPassword: string
 };
@@ -17,18 +17,32 @@ const RegisterPage : FC = () => {
     const {
         register,
         handleSubmit,
+        setError,
         formState: {
             errors
         }
-    } = useForm<FormData>({
-        shouldUnregister: true
-    });
+    } = useForm<RegisterFormData>();
     const navigate = useNavigate();
 
-    const onSubmit : SubmitHandler<FormData> = async (data) => {
-        //await authService.register(data).then((res) => console.log(res))
-        navigate('/login');
-        console.log(data)
+    const onSubmit : SubmitHandler<RegisterFormData> = async (data) => {
+        await authService.register(data)
+            .then((res) => {
+                console.log(res)
+                navigate('/login');
+            })
+            .catch(e => {
+                if (e.response?.data?.message) {
+                    setError("root.server", {
+                        type: "custom",
+                        message: e.response.data.message
+                    })
+                } else {
+                    setError("root.server", {
+                        type: "custom",
+                        message: e.message
+                    })
+                }
+            })
     }
 
     return (
@@ -46,7 +60,7 @@ const RegisterPage : FC = () => {
                             {...register("email", { required: true })}
                             placeholder={"example@gmail.com"}
                         />
-                        {errors.email && <span>This field is required</span>}
+                        {errors.email && <span className="formError">This field is required</span>}
                     </div>
                     <div className={cssLogin.inputGroup}>
                         <label htmlFor="">Phone</label>
@@ -55,16 +69,16 @@ const RegisterPage : FC = () => {
                             {...register("phoneNumber", { required: true })}
                             placeholder={"098 777 43 21"}
                         />
-                        {errors.phoneNumber && <span>This field is required</span>}
+                        {errors.phoneNumber && <span className="formError">This field is required</span>}
                     </div>
                     <div className={cssLogin.inputGroup}>
                         <label htmlFor="">Username</label>
                         <input
                             type="text"
-                            {...register("username", { required: true })}
+                            {...register("userName", { required: true })}
                             placeholder={"cool_username"}
                         />
-                        {errors.username && <span>This field is required</span>}
+                        {errors.userName && <span className="formError">This field is required</span>}
                     </div>
                     <div className={cssLogin.inputGroup}>
                         <label htmlFor="">Password</label>
@@ -73,7 +87,7 @@ const RegisterPage : FC = () => {
                             {...register("password", { required: true })}
                             placeholder={"your password"}
                         />
-                        {errors.password && <span>This field is required</span>}
+                        {errors.password && <span className="formError">This field is required</span>}
                     </div>
                     <div className={cssLogin.inputGroup}>
                         <label htmlFor="">Repeat password</label>
@@ -82,7 +96,8 @@ const RegisterPage : FC = () => {
                             {...register("repeatPassword", { required: true })}
                             placeholder={"your password"}
                         />
-                        {errors.repeatPassword && <span>This field is required</span>}
+                        {errors.repeatPassword && <span className="formError">This field is required</span>}
+                        {errors.root?.server && <span className="formError">{errors.root?.server.message}</span>}
                     </div>
                     <button className={cssLogin.submitButton} type={"submit"}>Sign up</button>
                     <div className={cssLogin.createAccountLink}>

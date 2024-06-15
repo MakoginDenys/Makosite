@@ -29,7 +29,7 @@ const DropdownProfile : FC = () => {
                     user?.photo == '' ? <FontAwesomeIcon icon={faUser} /> : <img src="" alt="user photo"/>
                 }
             </div>
-            <span>{user?.username}</span>
+            <span>{user?.userName}</span>
             {
                 showDropdown ? <FontAwesomeIcon icon={faCaretUp} /> : <FontAwesomeIcon icon={faCaretDown} />
             }
@@ -39,11 +39,11 @@ const DropdownProfile : FC = () => {
                     <ul>
                         <li>
                             <FontAwesomeIcon className={css.dropdownItemIcon} size={'lg'} icon={faAddressCard}/>
-                            <Link to={`/${user?.username}`}>My profile</Link>
+                            <Link to={`/${user?.userName}`}>My profile</Link>
                         </li>
                         <li>
                             <FontAwesomeIcon className={css.dropdownItemIcon} size={'lg'} icon={faGear}/>
-                            <Link to={`/settings`}>Settings</Link>
+                            <Link to={`/dashboard/settings`}>Settings</Link>
                         </li>
                         <li onClick={handleLogout}>
                             <FontAwesomeIcon className={css.dropdownItemIcon} size={'lg'} icon={faArrowRightFromBracket} />

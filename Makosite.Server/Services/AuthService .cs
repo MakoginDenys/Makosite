@@ -53,7 +53,7 @@ namespace Makosite.Server.Services
         }
         private string GenerateToken(string userEmail)
         {
-            var securityKey = new SymmetricSecurityKey(AuthOptions.GetSymmetricSecurityKey().Key);
+            var securityKey = AuthOptions.GetSymmetricSecurityKey();
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new List<Claim> { new Claim(ClaimTypes.Name, userEmail) };
 

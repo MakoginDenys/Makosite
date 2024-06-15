@@ -19,7 +19,6 @@ namespace Makosite.Server
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -44,6 +43,13 @@ namespace Makosite.Server
                         ValidateIssuerSigningKey = true,
                     };
                 });
+            builder.Services.AddCors(o => o.AddPolicy("LowCorsPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             var app = builder.Build();
 
             app.UseDefaultFiles();
@@ -55,13 +61,12 @@ namespace Makosite.Server
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseCors("LowCorsPolicy");
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
-
             app.MapControllers();
-
             app.MapFallbackToFile("/index.html");
 
             app.Run();

@@ -1,10 +1,11 @@
-import {FC} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {Logo} from "../../Logo/Logo.tsx";
 import css from './LoginPage.module.css';
 import {useAppDispatch} from "../../../hooks/hooks.ts";
 import {loginUser} from "../../../storage/slices/authSlice.ts";
+import {authService} from "../../../services/auth.service.ts";
 
 const LoginPage : FC = () => {
     const navigate = useNavigate();
@@ -12,14 +13,29 @@ const LoginPage : FC = () => {
     const {
         register,
         handleSubmit,
+        setError,
         formState: {
             errors
         }
     } = useForm();
 
-    const onSubmit = () => {
-        dispatch(loginUser({token: '', user: {username: 'login_user'}}));
-        navigate('/');
+    const onSubmit = async (data: any) => {
+        await authService.login(data).then((res) => {
+            dispatch(loginUser({token: res.token, user: res.user}));
+            navigate('/');
+        }).catch(e => {
+            if (e.response?.data?.message) {
+                setError("password", {
+                    type: "custom",
+                    message: e.response.data.message,
+                })
+            } else {
+                setError("password", {
+                    type: "custom",
+                    message: e.message,
+                })
+            }
+        });
     }
 
     return (
@@ -34,15 +50,18 @@ const LoginPage : FC = () => {
                         <label htmlFor="">Email or phone number</label>
                         <input
                             type="text"
-                            {...register("email", { required: true })}
+                            {...register("EmailOrPhoneNumber", { required: true })}
                             placeholder={"example@gmail.com"}
                         />
-                        {errors.email && <span>This field is required</span>}
+                        {errors.EmailOrPhoneNumber && <span className="formError">This field is required</span>}
                     </div>
                     <div className={css.inputGroup}>
                         <label htmlFor="">Password</label>
-                        <input type="password" placeholder={"your password"}/>
-                        {errors.password && <span>This field is required</span>}
+                        <input
+                            type="password"
+                            {...register("password", { required: true })}
+                            placeholder={"your password"}/>
+                        {errors.password && <span className="formError">{errors.password.message?.toString()}</span>}
                     </div>
                     <div className={css.rememberGroup}>
                         <input type="checkbox"/>
