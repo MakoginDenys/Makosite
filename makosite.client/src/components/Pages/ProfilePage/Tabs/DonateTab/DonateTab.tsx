@@ -12,13 +12,18 @@ const DonateTab : FC = () => {
     const {
         register,
         handleSubmit,
+        setValue,
         formState: {
             errors
         }
     } = useForm();
 
-    const onSubmit = () => {
-
+    const onSubmit = (data: any) => {
+        // FIXME bug with link opening
+        window.open(
+            'https://send.monobank.ua/jar/49hJS2Jaed' + '?a=' + data?.amount + '&t=' + data?.message,
+            '_blank'
+        );
     }
 
     const onPresetClick = (e: React.MouseEvent<HTMLSpanElement>, amount: number) => {
@@ -26,6 +31,7 @@ const DonateTab : FC = () => {
         setActivePrice(e.target);
         $('#inputAmount').val(amount);
         $(e.target).addClass(css.pricePresetActive);
+        setValue('amount', amount);
     }
 
     return (
@@ -72,7 +78,11 @@ const DonateTab : FC = () => {
                     </div>
                     <div>
                         <div className={css.inputTitle}>Message</div>
-                        <textarea className={css.textareaInput} placeholder={'Leave your message here'}></textarea>
+                        <textarea
+                            className={css.textareaInput}
+                            {...register('message')}
+                            placeholder={'Leave your message here'}
+                        ></textarea>
                     </div>
                     <button className={css.sendButton} type={'submit'}>Send</button>
                 </form>
