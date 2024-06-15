@@ -1,7 +1,8 @@
 import React, {FC, useState} from 'react';
+import $ from 'jquery';
 import css from './DonateTab.module.css';
 import {useForm} from "react-hook-form";
-import $ from 'jquery';
+import TopFive from "./TopFive/TopFive.tsx";
 
 const DonateTab : FC = () => {
     const [
@@ -28,7 +29,7 @@ const DonateTab : FC = () => {
     }
 
     return (
-        <div>
+        <div className={css.donateTab}>
             <div className={css.donateBlock}>
                 <h3>Donate</h3>
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -39,7 +40,7 @@ const DonateTab : FC = () => {
                             <label htmlFor="radioMono">Mono</label>
                         </div>
                         <div className={css.inputRadio}>
-                            <input id={'radioCrypto'} {...register('crypto')} name="paymentMethod" type="radio"/>
+                            <input id={'radioCrypto'} {...register('crypto')} name="paymentMethod" type="radio" disabled/>
                             <label htmlFor="radioCrypto">Cryptocurrency</label>
                         </div>
                     </div>
@@ -73,6 +74,10 @@ const DonateTab : FC = () => {
                     </div>
                     <button className={css.sendButton} type={'submit'}>Send</button>
                 </form>
+            </div>
+            <div className={css.rightPanel}>
+                <TopFive title={"Top 5"}/>
+                <TopFive title={"Latest 5"}/>
             </div>
         </div>
     );

@@ -3,10 +3,11 @@ import {Link, useNavigate} from "react-router-dom";
 import {useForm, SubmitHandler} from "react-hook-form";
 import {Logo} from "../../Logo/Logo.tsx";
 import cssLogin from "../LoginPage/LoginPage.module.css";
+import {authService} from "../../../services/auth.service.ts";
 
 type FormData = {
     email: string,
-    phone: string,
+    phoneNumber: string,
     username: string,
     password: string,
     repeatPassword: string
@@ -19,10 +20,13 @@ const RegisterPage : FC = () => {
         formState: {
             errors
         }
-    } = useForm<FormData>();
+    } = useForm<FormData>({
+        shouldUnregister: true
+    });
     const navigate = useNavigate();
 
-    const onSubmit : SubmitHandler<FormData> = (data) => {
+    const onSubmit : SubmitHandler<FormData> = async (data) => {
+        //await authService.register(data).then((res) => console.log(res))
         navigate('/login');
         console.log(data)
     }
@@ -48,10 +52,10 @@ const RegisterPage : FC = () => {
                         <label htmlFor="">Phone</label>
                         <input
                             type="text"
-                            {...register("phone", { required: true })}
+                            {...register("phoneNumber", { required: true })}
                             placeholder={"098 777 43 21"}
                         />
-                        {errors.phone && <span>This field is required</span>}
+                        {errors.phoneNumber && <span>This field is required</span>}
                     </div>
                     <div className={cssLogin.inputGroup}>
                         <label htmlFor="">Username</label>

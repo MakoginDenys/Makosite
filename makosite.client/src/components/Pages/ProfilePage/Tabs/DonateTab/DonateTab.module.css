@@ -1,3 +1,8 @@
+.donateTab {
+    display: flex;
+    justify-content: space-between;
+}
+
 .donateBlock {
     border-radius: 30px;
     border: 1px solid #DEE2E6;
@@ -149,4 +154,10 @@ div:has(> .fullnameInput) {
     border: 1px solid #8D939C;
     padding: 10px;
     font-size: 14px;
+}
+
+.rightPanel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
