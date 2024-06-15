@@ -29,7 +29,7 @@ const DropdownProfile : FC = () => {
                     user?.photo == '' ? <FontAwesomeIcon icon={faUser} /> : <img src="" alt="user photo"/>
                 }
             </div>
-            <span>{user?.userName}</span>
+            <span className={css.username}>{user?.userName}</span>
             {
                 showDropdown ? <FontAwesomeIcon icon={faCaretUp} /> : <FontAwesomeIcon icon={faCaretDown} />
             }
