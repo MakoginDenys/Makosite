@@ -16,11 +16,6 @@ namespace Makosite.Server.Repository
                 .WithMany()
                 .HasForeignKey(u=> u.UserInformationId)
                 .OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<UserProfileInformation>()
-                .HasOne(p => p.User)
-                .WithMany()
-                .HasForeignKey(u => u.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
