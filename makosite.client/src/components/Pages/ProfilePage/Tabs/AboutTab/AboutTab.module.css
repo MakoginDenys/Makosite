@@ -1,0 +1,35 @@
+.aboutBlock {
+    border-radius: 30px;
+    border: 1px solid #DEE2E6;
+    width: 60%;
+    padding: 30px;
+
+    h3 {
+        margin-bottom: 20px;
+    }
+}
+
+.donateBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    border: 1px solid #DEE2E6;
+    width: 35%;
+    padding: 30px;
+
+    a {
+        background-color: #000;
+        color: #fff;
+        width: 70%;
+        text-align: center;
+        padding: 10px 0;
+        border-radius: 8px;
+    }
+}
+
+div:has(> .aboutBlock) {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
