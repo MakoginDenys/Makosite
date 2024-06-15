@@ -54,7 +54,7 @@ const DonateTab : FC = () => {
                     </div>
                     <div className={css.inputTitle}>Amount</div>
                     <div className={css.amountBlock}>
-                        <input id={'inputAmount'} {...register('amount')} type="number"/>
+                        <input id={'inputAmount'} {...register('amount')} type="number" placeholder={'0'}/>
                         <div className={css.inputCurrency}>
                             <span>₴ UAH</span>
                         </div>
