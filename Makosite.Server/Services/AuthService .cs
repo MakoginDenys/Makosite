@@ -31,10 +31,8 @@ namespace Makosite.Server.Services
             }
 
             // Створення нового користувача
-            var newUser = new User { Email = model.Email, Password = model.Password, PhoneNumber = model.PhoneNumber, UserName = model.UserName };
-            var newUserInformation = new UserProfileInformation { User =  newUser };
+            var newUser = new User { Email = model.Email, Password = model.Password, PhoneNumber = model.PhoneNumber, UserName = model.UserName, Description = "", About = "" };
             _context.Users.Add(newUser);
-            _context.UsersProfileInformation.Add(newUserInformation);
             await _context.SaveChangesAsync();
 
             return new AuthResponseModel { Success = true, Message = "User successfully registered" };

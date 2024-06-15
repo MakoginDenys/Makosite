@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Makosite.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240610124933_addOneToOneRelation2")]
-    partial class addOneToOneRelation2
+    [Migration("20240615120905_FixIdentity")]
+    partial class FixIdentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -100,7 +100,7 @@ namespace Makosite.Server.Migrations
                     b.HasOne("Makosite.Server.Repository.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");

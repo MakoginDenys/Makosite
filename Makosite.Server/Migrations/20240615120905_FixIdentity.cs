@@ -5,7 +5,7 @@
 namespace Makosite.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class addOneToOneRelation1 : Migration
+    public partial class FixIdentity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

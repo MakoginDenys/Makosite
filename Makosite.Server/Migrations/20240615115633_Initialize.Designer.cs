@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Makosite.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240610124101_addOneToOneRelation1")]
-    partial class addOneToOneRelation1
+    [Migration("20240615115633_Initialize")]
+    partial class Initialize
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,10 @@ namespace Makosite.Server.Migrations
             modelBuilder.Entity("Makosite.Server.Repository.Models.User", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -49,6 +52,8 @@ namespace Makosite.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserInformationId");
 
                     b.ToTable("Users");
                 });
@@ -74,15 +79,17 @@ namespace Makosite.Server.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("UsersProfileInformation");
                 });
 
             modelBuilder.Entity("Makosite.Server.Repository.Models.User", b =>
                 {
                     b.HasOne("Makosite.Server.Repository.Models.UserProfileInformation", "UserProfileInformation")
-                        .WithOne("User")
-                        .HasForeignKey("Makosite.Server.Repository.Models.User", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithMany()
+                        .HasForeignKey("UserInformationId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("UserProfileInformation");
@@ -90,8 +97,13 @@ namespace Makosite.Server.Migrations
 
             modelBuilder.Entity("Makosite.Server.Repository.Models.UserProfileInformation", b =>
                 {
-                    b.Navigation("User")
+                    b.HasOne("Makosite.Server.Repository.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

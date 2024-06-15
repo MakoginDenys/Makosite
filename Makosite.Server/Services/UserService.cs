@@ -22,8 +22,8 @@ namespace Makosite.Server.Services
             user.Email = newEmail;
             user.UserName = newUserName;
             user.PhoneNumber = newPhoneNumber;
-            user.UserProfileInformation.Description = newDescription;
-            user.UserProfileInformation.About = newAbout;
+            user.Description = newDescription;
+            user.About = newAbout;
             _context.SaveChanges();
             return new UserUpdateRequestModel { Success = true, Message = "User data successfully Updated", UserName = user.UserName };
         }
