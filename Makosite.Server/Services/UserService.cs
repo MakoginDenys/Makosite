@@ -1,8 +1,10 @@
 ﻿using Makosite.Server.Models;
 using Makosite.Server.Repository;
+using Makosite.Server.Repository.Models;
 using Makosite.Server.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Makosite.Server.Services
 {
@@ -13,6 +15,12 @@ namespace Makosite.Server.Services
         {
             _context = context;
         }
+
+        public async Task<User> SearchUserByUsername(string username)
+        {
+            return _context.Users.FirstOrDefault(u => u.UserName == username);
+        }
+
         public async Task<UserUpdateRequestModel> UpdateUserInformation(string oldEmail, string newEmail, string newUserName, string newPhoneNumber, string newDescription, string newAbout, byte[] photo)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == oldEmail);
