@@ -8,7 +8,7 @@ import {useAppSelector} from "../../hooks/hooks.ts";
 const Navbar : FC = () => {
     const user = useAppSelector(state => state.auth.user);
 
-    console.log(user)
+
 
     return (
         <div className={css.navbar}>

@@ -20,15 +20,12 @@ const RegisterPage : FC = () => {
         formState: {
             errors
         }
-    } = useForm<FormData>({
-        shouldUnregister: true
-    });
+    } = useForm<FormData>();
     const navigate = useNavigate();
 
     const onSubmit : SubmitHandler<FormData> = async (data) => {
-        //await authService.register(data).then((res) => console.log(res))
+        await authService.register(data).then((res) => console.log(res))
         navigate('/login');
-        console.log(data)
     }
 
     return (

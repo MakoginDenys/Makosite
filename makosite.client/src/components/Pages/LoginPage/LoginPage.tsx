@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import {Logo} from "../../Logo/Logo.tsx";
@@ -13,15 +13,30 @@ const LoginPage : FC = () => {
     const {
         register,
         handleSubmit,
+        setError,
         formState: {
             errors
         }
     } = useForm();
 
     const onSubmit = async (data: any) => {
-        await authService.login(data).then((res) => console.log(res))
-        dispatch(loginUser({token: '', user: {username: 'login_user'}}));
-        navigate('/');
+        await authService.login(data).then((res) => {
+            dispatch(loginUser({token: res.token, user: res.user}));
+            console.log(res.user);
+            navigate('/');
+        }).catch(e => {
+            if (e.response?.data?.message) {
+                setError("password", {
+                    type: "custom",
+                    message: e.response.data.message,
+                })
+            } else {
+                setError("password", {
+                    type: "custom",
+                    message: e.message,
+                })
+            }
+        });
     }
 
     return (
@@ -39,7 +54,7 @@ const LoginPage : FC = () => {
                             {...register("EmailOrPhoneNumber", { required: true })}
                             placeholder={"example@gmail.com"}
                         />
-                        {errors.email && <span>This field is required</span>}
+                        {errors.EmailOrPhoneNumber && <span>This field is required</span>}
                     </div>
                     <div className={css.inputGroup}>
                         <label htmlFor="">Password</label>
@@ -47,7 +62,7 @@ const LoginPage : FC = () => {
                             type="password"
                             {...register("password", { required: true })}
                             placeholder={"your password"}/>
-                        {errors.password && <span>This field is required</span>}
+                        {errors.password && <span>{errors.password.message?.toString()}</span>}
                     </div>
                     <div className={css.rememberGroup}>
                         <input type="checkbox"/>

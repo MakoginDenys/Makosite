@@ -9,6 +9,6 @@ type RegisterFormData = {
 };
 
 export const authService = {
-    login: (data: any) => axiosService.post(`${urls.auth}/login`, data).then(value => value.data),
-    register: (data: RegisterFormData) => axiosService.post(`${urls.auth}/register`, data).then(value => value.data)
+    login: async (data: any) => await axiosService.post(`${urls.auth}/login`, data).then(value => value.data),
+    register: async (data: RegisterFormData) => await axiosService.post(`${urls.auth}/register`, data).then(value => value.data)
 }

@@ -11,13 +11,11 @@ const AboutTab : FC = () => {
             <div>
                 <div className={css.aboutBlock}>
                     <h3>About</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius,
-                        error molestias natus obcaecati quia quidem quis recusandae soluta veritatis voluptatum.
-                    </p>
+                    {user?.about ? <p>{user?.about}</p> : <p>The user did not provide a description</p>}
                 </div>
 
                 <div className={css.donateBlock}>
-                    <Link to={`/${user?.username}`}>DONATE</Link>
+                    <Link to={`/${user?.userName}`}>DONATE</Link>
                 </div>
             </div>
         </div>
