@@ -1,0 +1,152 @@
+.donateBlock {
+    border-radius: 30px;
+    border: 1px solid #DEE2E6;
+    width: 60%;
+    padding: 30px;
+
+    div:has(> .inputRadio) {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+}
+
+.sendButton {
+    background-color: #000;
+    width: 100%;
+    outline: none;
+    padding: 10px;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.inputRadio {
+    display: flex;
+    align-items: center;
+    border: 1px solid #8D939C;
+    border-radius: 8px;
+    width: 48%;
+
+    input {
+        transform: scale(1.5);
+        accent-color: #000;
+        width: 50px;
+        outline: none;
+        margin-bottom: -3px;
+    }
+
+    label {
+        width: 100%;
+        padding: 15px;
+    }
+
+    &:has(input:checked){
+        background-color: #E8E8E8;
+    }
+}
+
+.inputTitle {
+    color: #6C7483;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.amountBlock {
+    display: flex;
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+
+
+    .pricePresetActive {
+        background-color: #E8E8E8;
+    }
+
+    input[type=number] {
+        outline: none;
+        border: 1px solid #8D939C;
+        border-right: none;
+        background-color: #E8E8E8;
+        padding: 10px;
+        -moz-appearance:textfield; /* Firefox */
+        border-bottom-left-radius: 8px;
+        border-top-left-radius: 8px;
+        width: 35%;
+        font-size: 16px;
+    }
+
+
+    .inputCurrency {
+        border: 1px solid #8D939C;
+        border-bottom-right-radius: 8px;
+        border-top-right-radius: 8px;
+        border-left: none;
+        background-color: #E8E8E8;
+        display: flex;
+        align-items: center;
+        padding-right: 10px;
+
+        span {
+            border-left: 1px solid #8D939C;
+            padding-left: 15px;
+            font-size: 14px;
+        }
+    }
+}
+
+.pricePreset {
+    border: 1px solid #8D939C;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    cursor: pointer;
+}
+
+div:has(> .pricePreset) {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    width: auto;
+    float: right;
+    margin-left: auto;
+}
+
+.fullnameInput {
+    border-radius: 8px;
+    outline: none;
+    padding: 10px;
+    border: 1px solid #8D939C;
+    width: 100%;
+    font-size: 16px;
+}
+
+div:has(> .fullnameInput) {
+    margin-bottom: 20px;
+}
+
+.amountDescription {
+    color: #6C7483;
+    font-size: 12px;
+    width: 46%;
+    text-align: right;
+}
+
+.textareaInput {
+    width: 100%;
+    border-radius: 8px;
+    outline: none;
+    resize: vertical;
+    min-height: 150px;
+    max-height: 300px;
+    border: 1px solid #8D939C;
+    padding: 10px;
+    font-size: 14px;
+}

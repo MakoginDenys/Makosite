@@ -1,0 +1,86 @@
+.profileContainer {
+    position: relative;
+    border-radius: 100px;
+    box-shadow: 0 4px 60px #DFE5EE;
+    width: 80%;
+    margin: 60px auto;
+    padding: 60px;
+    overflow: hidden;
+
+    h3 {
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    &:before {
+        position: absolute;
+        left: 0;
+        top: 0;
+        content: '';
+        background-color: #000;
+        width: 100%;
+        height: 135px;
+        z-index: -1;
+    }
+
+
+}
+
+.profileCard {
+    position: relative;
+    width: 35%;
+    height: 150px;
+    border-radius: 20px;
+    box-shadow: 1px 4px 14px 6px rgba(0,0,0,0.14);
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    padding-left: 10px;
+    z-index: 10;
+    background-color: white;
+    margin-bottom: 50px;
+
+    strong {
+        align-self: center;
+        font-size: 20px;
+    }
+
+    img {
+        height: 100%;
+    }
+}
+
+.profileTabs {
+
+    .verticalLine {
+        width: 100%;
+    }
+
+    .tabTitles {
+        display: flex;
+        margin-bottom: 50px;
+
+        a[class='active'] {
+            border-bottom: 1px solid #000;
+            color: #000;
+        }
+
+        a,
+        .verticalLine {
+            color: #8D939C;
+            font-size: 18px;
+            padding: 0 20px 5px;
+            border-bottom: 1px solid #DEE2E6;
+        }
+    }
+}
+
+.mediaBlock {
+    border-radius: 30px;
+    border: 1px solid #DEE2E6;
+    margin-top: 50px;
+    padding: 60px 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
