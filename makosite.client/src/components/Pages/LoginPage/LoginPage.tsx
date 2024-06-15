@@ -5,6 +5,7 @@ import {Logo} from "../../Logo/Logo.tsx";
 import css from './LoginPage.module.css';
 import {useAppDispatch} from "../../../hooks/hooks.ts";
 import {loginUser} from "../../../storage/slices/authSlice.ts";
+import {authService} from "../../../services/auth.service.ts";
 
 const LoginPage : FC = () => {
     const navigate = useNavigate();
@@ -17,7 +18,8 @@ const LoginPage : FC = () => {
         }
     } = useForm();
 
-    const onSubmit = () => {
+    const onSubmit = async (data: any) => {
+        await authService.login(data).then((res) => console.log(res))
         dispatch(loginUser({token: '', user: {username: 'login_user'}}));
         navigate('/');
     }
@@ -34,14 +36,17 @@ const LoginPage : FC = () => {
                         <label htmlFor="">Email or phone number</label>
                         <input
                             type="text"
-                            {...register("email", { required: true })}
+                            {...register("EmailOrPhoneNumber", { required: true })}
                             placeholder={"example@gmail.com"}
                         />
                         {errors.email && <span>This field is required</span>}
                     </div>
                     <div className={css.inputGroup}>
                         <label htmlFor="">Password</label>
-                        <input type="password" placeholder={"your password"}/>
+                        <input
+                            type="password"
+                            {...register("password", { required: true })}
+                            placeholder={"your password"}/>
                         {errors.password && <span>This field is required</span>}
                     </div>
                     <div className={css.rememberGroup}>
