@@ -1,4 +1,6 @@
 using Makosite.Server.Repository;
+using Makosite.Server.Services;
+using Makosite.Server.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +28,8 @@ namespace Makosite.Server
             builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddAuthorization();
+            builder.Services.AddTransient<IAuthService, AuthService>();
+            builder.Services.AddTransient<IUserService, UserService>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {

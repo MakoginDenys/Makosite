@@ -3,6 +3,7 @@ using Makosite.Server.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Makosite.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240610123313_addUserProfileInfo")]
+    partial class addUserProfileInfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +53,8 @@ namespace Makosite.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserInformationId");
+                    b.HasIndex("UserInformationId")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -84,9 +88,9 @@ namespace Makosite.Server.Migrations
             modelBuilder.Entity("Makosite.Server.Repository.Models.User", b =>
                 {
                     b.HasOne("Makosite.Server.Repository.Models.UserProfileInformation", "UserProfileInformation")
-                        .WithMany()
-                        .HasForeignKey("UserInformationId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .WithOne()
+                        .HasForeignKey("Makosite.Server.Repository.Models.User", "UserInformationId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("UserProfileInformation");
@@ -97,7 +101,7 @@ namespace Makosite.Server.Migrations
                     b.HasOne("Makosite.Server.Repository.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
