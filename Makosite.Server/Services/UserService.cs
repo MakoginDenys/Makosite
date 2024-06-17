@@ -21,20 +21,20 @@ namespace Makosite.Server.Services
             return _context.Users.FirstOrDefault(u => u.UserName == username);
         }
 
-        public async Task<UserUpdateRequestModel> UpdateUserInformation(string oldEmail, string newEmail, string newUserName, string newPhoneNumber, string newDescription, string newAbout, byte[] photo)
+        public async Task<User> UpdateUserInformation(string oldEmail, User newUser)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == oldEmail);
             if (user == null) {
-                return new UserUpdateRequestModel { Success = false , Message = "Error" };
+                return new User();
             }
-            user.Email = newEmail;
-            user.UserName = newUserName;
-            user.PhoneNumber = newPhoneNumber;
-            user.Description = newDescription;
-            user.About = newAbout;
-            user.Photo = photo;
+            user.Email = newUser.Email;
+            user.UserName = newUser.UserName;
+            user.PhoneNumber = newUser.PhoneNumber;
+            user.Description = newUser.Description;
+            user.About = newUser.About;
+            user.Photo = newUser.Photo;
             _context.SaveChanges();
-            return new UserUpdateRequestModel { Success = true, Message = "User data successfully Updated", UserName = user.UserName };
+            return user;
         }
     }
 }
