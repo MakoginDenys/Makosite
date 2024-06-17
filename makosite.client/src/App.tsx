@@ -20,6 +20,7 @@ import {SettingsPage} from "./components/Pages/SettingsPage/SettingsPage.tsx";
 import {OverviewPage} from "./components/Pages/OverviewPage/OverviewPage.tsx";
 import {StatisticsPage} from "./components/Pages/StatisticsPage/StatisticsPage.tsx";
 import './App.css';
+import {ErrorPage} from "./components/Pages/ErrorPage/ErrorPage.tsx";
 
 const App : FC = () => {
 
@@ -32,10 +33,11 @@ const App : FC = () => {
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/login" element={<LoginPage/>}/>
                 <Route path="/register" element={<RegisterPage/>}/>
-                <Route path="/:username" element={<ProfilePage/>}>
+                <Route path="/u/:username" element={<ProfilePage/>}>
                     <Route path="about" element={<AboutTab/>}/>
                     <Route path="" element={<DonateTab/>}/>
                 </Route>
+                <Route path="*" element={<ErrorPage/>}/>
 
                 {/* Private route using PrivateRoute component */}
                 <Route path="/" element={<PrivateRoute/>}>

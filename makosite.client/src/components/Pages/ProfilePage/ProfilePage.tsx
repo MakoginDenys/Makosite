@@ -1,5 +1,5 @@
-import React, {FC} from 'react';
-import {NavLink, Outlet, useParams} from "react-router-dom";
+import React, {FC, useEffect, useState} from 'react';
+import {NavLink, Outlet, useLocation, useParams} from "react-router-dom";
 import css from './ProfilePage.module.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
@@ -11,21 +11,23 @@ import {
     faXTwitter,
     faYoutube
 } from "@fortawesome/free-brands-svg-icons";
+import {userService} from "../../../services/user.service.ts";
+import {useAppSelector} from "../../../hooks/hooks.ts";
 
 const ProfilePage : FC = () => {
-    const { username } = useParams();
+    const user = useAppSelector(state => state.search.selectedUser);
 
     return (
         <div className={css.profileContainer}>
             <div className={css.profileCard}>
-                <strong>{username}</strong>
+                <strong>{user?.userName}</strong>
                 <img src="" alt="user photo"/>
             </div>
 
             <div className={css.profileTabs}>
                 <div className={css.tabTitles}>
-                    <NavLink to={`/${username}/about`}>About</NavLink>
-                    <NavLink end to={`/${username}`}>Donate</NavLink>
+                    <NavLink to={`/u/${user?.userName}/about`}>About</NavLink>
+                    <NavLink end to={`/u/${user?.userName}`}>Donate</NavLink>
                     <div className={css.verticalLine}></div>
                 </div>
                 <Outlet/>

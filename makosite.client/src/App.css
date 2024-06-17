@@ -26,3 +26,7 @@
      color: #f83446;
      font-size: 14px;
  }
+
+ .faqAnswerHide {
+     display: none;
+ }
