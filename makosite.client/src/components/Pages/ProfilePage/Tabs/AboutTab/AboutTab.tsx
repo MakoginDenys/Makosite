@@ -4,7 +4,7 @@ import {useAppSelector} from "../../../../../hooks/hooks.ts";
 import css from './AboutTab.module.css';
 
 const AboutTab : FC = () => {
-    const user = useAppSelector(state => state.auth.user);
+    const user = useAppSelector(state => state.search.selectedUser);
 
     return (
         <div>
@@ -15,7 +15,7 @@ const AboutTab : FC = () => {
                 </div>
 
                 <div className={css.donateBlock}>
-                    <Link to={`/${user?.userName}`}>DONATE</Link>
+                    <Link to={`/u/${user?.userName}`}>DONATE</Link>
                 </div>
             </div>
         </div>

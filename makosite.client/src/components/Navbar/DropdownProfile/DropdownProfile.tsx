@@ -39,7 +39,7 @@ const DropdownProfile : FC = () => {
                     <ul>
                         <li>
                             <FontAwesomeIcon className={css.dropdownItemIcon} size={'lg'} icon={faAddressCard}/>
-                            <Link to={`/${user?.userName}`}>My profile</Link>
+                            <Link to={`/u/${user?.userName}`}>My profile</Link>
                         </li>
                         <li>
                             <FontAwesomeIcon className={css.dropdownItemIcon} size={'lg'} icon={faGear}/>
