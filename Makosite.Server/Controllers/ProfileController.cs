@@ -18,9 +18,9 @@ namespace Makosite.Server.Controllers
             _userService = userService;
         }
         [HttpPut("update")]
-        public async Task<AuthResponseModel> Update(string email, User newUser)
+        public async Task<AuthResponseModel> Update(User newUser)
         {
-            var user = await _userService.UpdateUserInformation(email, newUser);
+            var user = await _userService.UpdateUserInformation(newUser.Email, newUser);
             if (user == null) return new AuthResponseModel() { Success = false, Message = "Cannot find user" };
             return user;
         }

@@ -27,7 +27,7 @@ const SettingsPage : FC = () => {
     const onSubmit = async (data: any) => {
         document.body.style.cursor = "wait";
         await userService.updateUser(data).then(res => {
-            dispatch(setLoginUser(res))
+            dispatch(setLoginUser(res.user))
         }).catch(e => {
             if (e.response?.data?.message) {
                 setError("root.server", {
