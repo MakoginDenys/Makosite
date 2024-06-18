@@ -4,6 +4,7 @@ using Makosite.Server.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Makosite.Server.Models;
 
 namespace Makosite.Server.Controllers
 {
@@ -17,10 +18,10 @@ namespace Makosite.Server.Controllers
             _userService = userService;
         }
         [HttpPut("update")]
-        public async Task<User> Update(User newUser)
+        public async Task<AuthResponseModel> Update(string email, User newUser)
         {
-            var user = await _userService.UpdateUserInformation(newUser.Email, newUser);
-            if (user == null) return new User();
+            var user = await _userService.UpdateUserInformation(email, newUser);
+            if (user == null) return new AuthResponseModel() { Success = false, Message = "Cannot find user" };
             return user;
         }
         [HttpGet("{username}")]
