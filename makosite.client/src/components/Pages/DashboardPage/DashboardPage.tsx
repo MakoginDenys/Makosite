@@ -9,16 +9,13 @@ const DashboardPage : FC = () => {
     return (
         <div className={css.dashboard}>
             <div className={css.dashboardLeft}>
-                <h3>Dashboard</h3>
-                <br/>
-                <br/>
                 <div className={css.dashboardLinks}>
                     <Link to={'overview'}><FontAwesomeIcon size={'lg'} icon={faHouse} />Overview</Link>
                     <Link to={'statistics'}><FontAwesomeIcon size={'lg'} icon={faSquarePollVertical} />Statistics</Link>
                     <Link to={'settings'}><FontAwesomeIcon size={'lg'} icon={faGears} />Settings</Link>
                 </div>
             </div>
-            <div>
+            <div className={css.dashboardContent}>
                 <Outlet/>
             </div>
         </div>

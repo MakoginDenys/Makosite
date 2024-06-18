@@ -1,14 +1,29 @@
 .dashboard {
     display: flex;
-    height: 500px;
+    min-height: 500px;
 }
 
 .dashboardLinks {
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
+
+    a {
+        width: 70%;
+        font-size: 20px;
+        margin-bottom: 15px;
+        svg {
+            width: 50px;
+        }
+    }
 }
 
 .dashboardLeft {
     width: 300px;
     border-right: 1px solid #000;
+}
+
+.dashboardContent {
+    width: 100%;
 }

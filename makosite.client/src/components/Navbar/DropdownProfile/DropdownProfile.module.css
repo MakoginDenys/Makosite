@@ -44,6 +44,13 @@
     align-items: center;
     justify-content: center;
     width: 50px;
+
+    img  {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        border: 1px solid #fff;
+    }
 }
 
 .username {

@@ -146,27 +146,27 @@ const HomePage : FC = () => {
 
                 <div className={css.reviewsFlex}>
                     <div className={css.review}>
-                        <img src="" alt="photo"/>
+                        <img src="/src/assets/images/avatars/ggrinyuk.png" alt="photo"/>
                         <span>@ggrinyuk</span>
                         <p className={css.reviewText}>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Ad culpa dolor ducimus fugit voluptate.
+                            The easiest and most pleasant to use donation service
+                            (in my experience) with a lot of functionality.
                         </p>
                     </div>
                     <div className={css.review}>
-                        <img src="" alt="photo"/>
-                        <span>@steve</span>
+                        <img src="/src/assets/images/avatars/yarolidze.png" alt="photo"/>
+                        <span>@yarolidze</span>
                         <p className={css.reviewText}>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Ad culpa dolor ducimus fugit labore laboriosam quam quia repellat temporibus voluptate.
+                            Convenient service and interface, high-quality support, the ability to receive donations
+                            from all over the world directly to my bank card. This is the best it can be!
                         </p>
                     </div>
                     <div className={css.review}>
-                        <img src="" alt="photo"/>
-                        <span>@ceh9</span>
+                        <img src="/src/assets/images/avatars/flopy.png" alt="photo"/>
+                        <span>@flopy</span>
                         <p className={css.reviewText}>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Ad culpa dolor ducimus quam quia repellat temporibus voluptate.
+                            Very cool service - they respond quickly, do it without delays,
+                            and even when there is a problem, after a few minutes it is no longer a problem 😏
                         </p>
                     </div>
                 </div>

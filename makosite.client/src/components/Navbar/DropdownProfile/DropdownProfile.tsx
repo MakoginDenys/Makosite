@@ -12,6 +12,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks.ts";
 import css from './DropdownProfile.module.css'
 import {logoutUser} from "../../../storage/slices/authSlice.ts";
+import defaultAvatar from '../../../assets/images/avatars/Avatar.png';
+import {setSelectedUser} from "../../../storage/slices/searchSlice.ts";
 
 const DropdownProfile : FC = () => {
     const {user, } = useAppSelector(state => state.auth);
@@ -26,7 +28,9 @@ const DropdownProfile : FC = () => {
         <div onClick={() => setShowDropdown(!showDropdown)} className={css.dropdown}>
             <div className={css.dropdownAvatar}>
                 {
-                    user?.photo == '' ? <FontAwesomeIcon icon={faUser} /> : <img src="" alt="user photo"/>
+                    user?.photo == '' ?
+                        <img src={defaultAvatar} alt="user photo"/> :
+                        <img src={user?.photo} alt="user photo"/>
                 }
             </div>
             <span className={css.username}>{user?.userName}</span>
@@ -39,7 +43,7 @@ const DropdownProfile : FC = () => {
                     <ul>
                         <li>
                             <FontAwesomeIcon className={css.dropdownItemIcon} size={'lg'} icon={faAddressCard}/>
-                            <Link to={`/u/${user?.userName}`}>My profile</Link>
+                            <Link onClick={() => dispatch(setSelectedUser(user))} to={`/u/${user?.userName}`}>My profile</Link>
                         </li>
                         <li>
                             <FontAwesomeIcon className={css.dropdownItemIcon} size={'lg'} icon={faGear}/>

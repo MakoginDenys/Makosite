@@ -16,10 +16,10 @@ namespace Makosite.Server.Controllers
         {
             _userService = userService;
         }
-        [HttpPost("update")]
-        public async Task<User> Update(string email, User newUser)
+        [HttpPut("update")]
+        public async Task<User> Update(User newUser)
         {
-            var user = await _userService.UpdateUserInformation(email, newUser);
+            var user = await _userService.UpdateUserInformation(newUser.Email, newUser);
             if (user == null) return new User();
             return user;
         }

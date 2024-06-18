@@ -1,12 +1,12 @@
 import {FC} from "react";
 import { Outlet, Navigate } from 'react-router-dom';
-import {useSelector} from "react-redux";
+import {useAppSelector} from "../../hooks/hooks.ts";
 
 
 const PrivateRoute : FC = () => {
-    const user = useSelector((state : any) => state.auth.user);
+    const token = useAppSelector((state : any) => state.auth.accessToken);
 
-    return user != null ? <Outlet /> : <Navigate to="/login" replace />;
+    return token != null ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export {PrivateRoute};

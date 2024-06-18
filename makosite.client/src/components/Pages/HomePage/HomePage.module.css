@@ -169,18 +169,21 @@
     border: 1px solid #fff;
     width: 25%;
     padding: 15px;
+
     img {
+        margin: 0 auto;
         display: block;
-        width: 50px;
-        height: 50px;
-        border-radius: 25px;
-        border: 1px solid #fff;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        border: 2px solid #fff;
     }
 
     span {
         display: block;
         font-weight: bold;
         margin: 15px 0;
+        text-align: center;
     }
 }
 
