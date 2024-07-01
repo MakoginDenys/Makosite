@@ -11,7 +11,7 @@ const AboutTab : FC = () => {
             <div>
                 <div className={css.aboutBlock}>
                     <h3>About</h3>
-                    {user?.about ? <p>{user?.about}</p> : <p>The user did not provide a description</p>}
+                    {user?.description ? <p>{user?.description}</p> : <p>The user did not provide a description</p>}
                 </div>
 
                 <div className={css.donateBlock}>

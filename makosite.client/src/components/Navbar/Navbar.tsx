@@ -11,7 +11,7 @@ const Navbar : FC = () => {
     return (
         <div className={css.navbar}>
             <Link to="/">
-                <Logo fontSize={40} firstPartOfLogo={"Mako"} secondPartOfLogo={"Site"}/>
+                <Logo fontSize={40} firstPartOfLogo={"Kind"} secondPartOfLogo={"Fund"}/>
             </Link>
 
             {token != null ? <DropdownProfile /> : <Link  to="/login">SIGN IN</Link>}

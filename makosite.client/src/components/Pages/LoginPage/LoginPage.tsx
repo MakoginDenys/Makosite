@@ -42,7 +42,7 @@ const LoginPage : FC = () => {
         <div>
             <div className={css.loginForm}>
                 <div className={css.loginLogo}>
-                    <Logo fontSize={40} firstPartOfLogo={'Mako'} secondPartOfLogo={'\nSite'}/>
+                    <Logo fontSize={40} firstPartOfLogo={'Kind'} secondPartOfLogo={'\nFund'}/>
                 </div>
                 <h3>Sign in</h3>
                 <form onSubmit={handleSubmit(onSubmit)}>
