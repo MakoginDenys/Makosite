@@ -19,8 +19,8 @@ import AboutTab from "./components/Pages/ProfilePage/Tabs/AboutTab/AboutTab.tsx"
 import {SettingsPage} from "./components/Pages/SettingsPage/SettingsPage.tsx";
 import {OverviewPage} from "./components/Pages/OverviewPage/OverviewPage.tsx";
 import {StatisticsPage} from "./components/Pages/StatisticsPage/StatisticsPage.tsx";
-import './App.css';
 import {ErrorPage} from "./components/Pages/ErrorPage/ErrorPage.tsx";
+import './App.css';
 
 const App : FC = () => {
 

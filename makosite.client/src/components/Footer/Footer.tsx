@@ -9,7 +9,7 @@ const Footer : FC = () => {
     return (
         <div className={css.footer}>
             <div className={css.flexContainer}>
-                <Logo fontSize={50} firstPartOfLogo={"Mako"} secondPartOfLogo={"Site"} />
+                <Logo fontSize={50} firstPartOfLogo={"Kind"} secondPartOfLogo={"Fund"} />
 
                 <ul>
                     <li><Link to={'/'}>Home</Link></li>

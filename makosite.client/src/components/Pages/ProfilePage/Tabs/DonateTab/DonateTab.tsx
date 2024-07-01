@@ -27,7 +27,6 @@ const DonateTab : FC = () => {
     } = useForm();
 
     const onSubmit = (data: any) => {
-        // FIXME bug with link opening
         window.open(
             'https://send.monobank.ua/jar/49hJS2Jaed' + '?a=' + data?.amount + '&t=' + data?.message,
             '_blank'
